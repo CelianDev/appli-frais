@@ -1,19 +1,5 @@
 <template>
-  <layout>
-    <div>
-      <Head title="Dashboard" />
-      <h1 class="mb-8 text-3xl font-bold">Dashboard</h1>
-      <p class="mb-8 leading-normal">Bonjour {{ auth.user.name }}</p>
-      <Link
-        href="logout"
-        method="post"
-        as="button"
-        class="inline-flex h-12 items-center justify-center rounded-md bg-neutral-950 px-6 font-medium text-neutral-50 transition active:scale-110"
-      >
-        Click me
-      </Link>
-    </div>
-  </layout>
+  <Layout :auth="auth" />
 </template>
 
 <script setup>
