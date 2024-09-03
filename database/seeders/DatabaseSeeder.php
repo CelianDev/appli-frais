@@ -21,5 +21,14 @@ class DatabaseSeeder extends Seeder
             'email' => 'zenscripter@example.com',
             'password' => 'password',
         ]);
+
+        User::factory()->create([
+            'first_name' => 'Testprenom2',
+            'name' => 'Testnom2',
+            'email' => 'zenscripter@example2.com',
+            'password' => 'password',
+        ]);
+
+        $this->call(FraisHorsForfaitSeeder::class);
     }
 }

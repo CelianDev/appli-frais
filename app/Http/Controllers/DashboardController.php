@@ -2,18 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\FraisHorsForfait;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
   public function index(): Response
   {
+    // Récupère l'utilisateur connecté
+    $user = Auth::user();
+
+    // Récupère les frais hors forfait associés à l'utilisateur
+    $fraisHorsForfait = FraisHorsForfait::forUser($user);
+
+    // Retourne la vue du tableau de bord avec les données de l'utilisateur et des frais
     return Inertia::render('Dashboard/Index', [
       'auth' => [
-        'user' => Auth::user()
-      ]
+        'user' => $user
+      ],
+      'content' => 'dashboard',
+      'fraisHorsForfait' => $fraisHorsForfait,
     ]);
   }
 }

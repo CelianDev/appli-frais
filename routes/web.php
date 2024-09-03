@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FraisHorsForfaitController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -19,6 +20,11 @@ use Inertia\Inertia;
 // Dashboard
 Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard')
+    ->middleware('auth');
+
+// Afficher les détails d'un frais
+Route::get('/frais/{id}', [FraisHorsForfaitController::class, 'show'])
+    ->name('frais.show')
     ->middleware('auth');
 
 
