@@ -63,15 +63,17 @@
                     <li>
                       <ul role="list" class="-mx-2 space-y-1">
                         <li v-for="item in navigation" :key="item.name">
-                          <a
+                          <Link
                             :href="item.href"
-                            :class="[
-                              item.current
-                                ? 'bg-sky-700 text-white'
-                                : 'text-sky-200 hover:bg-sky-700 hover:text-white',
-                              'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
-                            ]"
+                            method="get"
+                            as="button"
+                            class="cursor-pointer"
                           >
+                            :href="item.href" :class="[ item.current ?
+                            'bg-sky-700 text-white' : 'text-sky-200
+                            hover:bg-sky-700 hover:text-white', 'group flex
+                            gap-x-3 rounded-md p-2 text-sm font-semibold
+                            leading-6', ]" >
                             <component
                               :is="item.icon"
                               :class="[
@@ -83,7 +85,7 @@
                               aria-hidden="true"
                             />
                             {{ item.name }}
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </li>
@@ -324,6 +326,7 @@ const logout = () => {
 };
 
 import { ref } from "vue";
+import moment from "moment";
 import {
   Dialog,
   DialogPanel,
@@ -342,20 +345,38 @@ import {
   Cog6ToothIcon,
   DocumentDuplicateIcon,
   FolderIcon,
+  FolderPlusIcon,
   HomeIcon,
   UsersIcon,
   XMarkIcon,
 } from "@heroicons/vue/24/outline";
 import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/20/solid";
 
-defineProps({
+// Définir les props
+const props = defineProps({
   auth: Object,
 });
 
+console.log(props.auth);
+
+// Récupérer l'ID de l'utilisateur connecté
+const idVisiteur = props.auth.user.id;
+const mois = moment().format("YYYY-MM");
+
 const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
+  {
+    name: "Dashboard",
+    href: route("dashboard"),
+    icon: HomeIcon,
+    current: route().current("dashboard"), // Vérifier si la route actuelle est "dashboard"
+  },
+  {
+    name: "Nouveau Frais",
+    href: route("fiche-frais.show", { mois, idVisiteur }), // Route avec mois en cours et utilisateur connecté
+    icon: FolderPlusIcon,
+    current: route().current("fiche-frais.show"), // Vérifier si la route actuelle est "fiche-frais.show"
+  },
+  { name: "Mes Frais", href: "#", icon: UsersIcon, current: false },
   { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
   { name: "Documents", href: "#", icon: DocumentDuplicateIcon, current: false },
   { name: "Reports", href: "#", icon: ChartPieIcon, current: false },

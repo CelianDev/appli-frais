@@ -25,6 +25,13 @@ class DashboardController extends Controller
       ],
       'content' => 'dashboard',
       'fraisHorsForfait' => $fraisHorsForfait,
+      'breadcrumb' => [
+        [
+          'name' => 'Dashboard',
+          'href' => route('dashboard'), // Lien vers l'index ou accueil
+          'current' => true,
+        ],
+      ],
     ]);
   }
 }

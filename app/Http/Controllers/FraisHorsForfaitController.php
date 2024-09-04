@@ -14,9 +14,11 @@ class FraisHorsForfaitController extends Controller
         // Récupérer l'utilisateur connecté
         $user = Auth::user();
 
-        // Rechercher le frais en s'assurant qu'il appartient à l'utilisateur
+        // Rechercher le frais en s'assurant qu'il appartient à l'utilisateur via la relation avec fiche_frais
         $frais = FraisHorsForfait::where('id', $id)
-            ->where('idVisiteur', $user->id)
+            ->whereHas('ficheFrais', function ($query) use ($user) {
+                $query->where('idVisiteur', $user->id);
+            })
             ->firstOrFail();
 
         // Renvoyer la vue principale avec les détails du frais

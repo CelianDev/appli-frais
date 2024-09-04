@@ -87,12 +87,18 @@
 <script setup>
 import { usePage } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
+import moment from "moment";
+import "moment/dist/locale/fr";
 
 // Récupérer les frais depuis les props passées par Inertia
 const page = usePage();
 const fraisHorsForfait = page.props.fraisHorsForfait;
+moment.locale("fr");
+
+// Ne pas modifier le champ `date`, ajouter plutôt une nouvelle propriété `formattedDate` pour l'affichage
 fraisHorsForfait.forEach((f) => {
   f.type = "hors forfait";
+  f.formattedDate = moment(f.date, "YYYY-MM-DD").format("DD/MM/YYYY"); // Date formatée pour l'affichage
 });
 
 // Couleurs associées aux états des frais
@@ -108,8 +114,11 @@ const computedFrais = fraisHorsForfait.map((f) => ({
   statusClass: statusColors[f.etat] || "text-gray-400 bg-gray-400/10",
 }));
 
-// Trier les frais par date de création et ne garder que les 8 derniers
+// Trier les frais par la date de l'événement (champ `date`) du plus récent au moins récent
 const recentFrais = computedFrais
-  .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-  .slice(0, 8);
+  .sort((a, b) =>
+    moment(b.date, "YYYY-MM-DD").diff(moment(a.date, "YYYY-MM-DD"))
+  ) // Tri en utilisant moment pour la comparaison des dates
+  .slice(0, 7); // Ne garder que les 8 derniers
 </script>
+

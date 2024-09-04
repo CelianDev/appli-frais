@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FraisHorsForfaitController;
+use App\Http\Controllers\FicheFraisController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -19,17 +20,23 @@ use Inertia\Inertia;
 
 // Dashboard
 Route::get('/', [DashboardController::class, 'index'])
-    ->name('dashboard')
-    ->middleware('auth');
+  ->name('dashboard')
+  ->middleware('auth');
 
 // Afficher les détails d'un frais
-Route::get('/frais/{id}', [FraisHorsForfaitController::class, 'show'])
-    ->name('frais.show')
-    ->middleware('auth');
+Route::get('/frais/horsforfait/{id}', [FraisHorsForfaitController::class, 'show'])
+  ->name('frais.show')
+  ->middleware('auth');
+
+
+Route::get('/fiche-frais/{mois}/{idVisiteur}', [FicheFraisController::class, 'show'])
+  ->name('fiche-frais.show')
+  ->middleware('auth');
+
 
 
 Route::get('/about', function () {
-    return Inertia::render('About');
+  return Inertia::render('About');
 });
 
 // Route::get('/dashboard', function () {
@@ -37,12 +44,12 @@ Route::get('/about', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->name('logout');
+  ->name('logout');
 
 require __DIR__ . '/auth.php';

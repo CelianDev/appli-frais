@@ -6,17 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFraisHorsForfaitTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('frais_hors_forfait', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('idVisiteur')->constrained('users')->onDelete('cascade');
-            $table->date('date'); // Date complète du frais hors forfait
+            $table->id();  // Clé primaire auto-incrémentée
+            $table->foreignId('fiche_frais_id')->constrained('fiche_frais')->onDelete('cascade');
+            $table->date('date');
             $table->string('libelle');
             $table->decimal('montant', 8, 2);
             $table->enum('etat', ['validé', 'refusé', 'en attente'])->default('en attente');
@@ -24,11 +19,6 @@ class CreateFraisHorsForfaitTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('frais_hors_forfait');
