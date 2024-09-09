@@ -14,6 +14,7 @@ class CreateFraisHorsForfaitTable extends Migration
             $table->date('date');
             $table->string('libelle');
             $table->decimal('montant', 8, 2);
+            $table->json('justificatifs')->nullable(); // Stockage des chemins des justificatifs (JSON)
             $table->enum('etat', ['validé', 'refusé', 'en attente'])->default('en attente');
             $table->timestamps();
         });

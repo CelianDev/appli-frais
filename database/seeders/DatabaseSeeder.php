@@ -31,5 +31,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(FicheFraisSeeder::class);
         $this->call(FraisHorsForfaitSeeder::class);
+        $this->call(TypeFraisForfaitSeeder::class);
+        $this->call(FraisForfaitSeeder::class);
     }
 }

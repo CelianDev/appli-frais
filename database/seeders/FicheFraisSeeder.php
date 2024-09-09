@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 class FicheFraisSeeder extends Seeder
@@ -16,35 +15,19 @@ class FicheFraisSeeder extends Seeder
      */
     public function run()
     {
-        // Example data for seeding the fiche_frais table
-        $fichesFrais = [
-            [
-                'mois' => '2024-07',
-                'idVisiteur' => 1,  // Replace with a valid user ID from your users table
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'mois' => '2024-08',
-                'idVisiteur' => 1,  // Replace with a valid user ID from your users table
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'mois' => '2024-09',
-                'idVisiteur' => 1,  // Replace with a valid user ID from your users table
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'mois' => '2024-09',
-                'idVisiteur' => 2,  // Replace with a valid user ID from your users table
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-        ];
+        $fichesFrais = [];
 
-        // Insert the data into the fiche_frais table
+        // Générer les fiches frais de septembre 2023 à septembre 2024
+        for ($i = 0; $i <= 12; $i++) {
+            $date = Carbon::now()->startOfMonth()->subMonths(12 - $i);
+            $fichesFrais[] = [
+                'mois' => $date->format('Y-m'),
+                'idVisiteur' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
+        }
+
         DB::table('fiche_frais')->insert($fichesFrais);
     }
 }

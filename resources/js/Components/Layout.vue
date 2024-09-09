@@ -1,7 +1,7 @@
 <template>
   <div>
     <TransitionRoot as="template" :show="sidebarOpen">
-      <Dialog class="relative z-50 lg:hidden" @close="sidebarOpen = false">
+      <Dialog class="relative z-50 xl:hidden" @close="sidebarOpen = false">
         <TransitionChild
           as="template"
           enter="transition-opacity ease-linear duration-300"
@@ -47,7 +47,6 @@
                   </button>
                 </div>
               </TransitionChild>
-              <!-- Sidebar component, swap this element with another sidebar if you like -->
               <div
                 class="flex grow flex-col gap-y-5 overflow-y-auto bg-sky-600 px-6 pb-4"
               >
@@ -62,18 +61,20 @@
                   <ul role="list" class="flex flex-1 flex-col gap-y-7">
                     <li>
                       <ul role="list" class="-mx-2 space-y-1">
-                        <li v-for="item in navigation" :key="item.name">
+                        <li
+                          class="p-1"
+                          v-for="item in navigation"
+                          :key="item.name"
+                        >
                           <Link
                             :href="item.href"
-                            method="get"
-                            as="button"
-                            class="cursor-pointer"
+                            :class="[
+                              item.current
+                                ? 'bg-sky-700 text-white'
+                                : 'border text-sky-200 hover:bg-sky-700 hover:text-white',
+                              'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
+                            ]"
                           >
-                            :href="item.href" :class="[ item.current ?
-                            'bg-sky-700 text-white' : 'text-sky-200
-                            hover:bg-sky-700 hover:text-white', 'group flex
-                            gap-x-3 rounded-md p-2 text-sm font-semibold
-                            leading-6', ]" >
                             <component
                               :is="item.icon"
                               :class="[
@@ -89,13 +90,13 @@
                         </li>
                       </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                       <div class="text-xs font-semibold leading-6 text-sky-200">
                         Your teams
                       </div>
                       <ul role="list" class="-mx-2 mt-2 space-y-1">
                         <li v-for="team in teams" :key="team.name">
-                          <a
+                          <Link
                             :href="team.href"
                             :class="[
                               team.current
@@ -109,12 +110,12 @@
                               >{{ team.initial }}</span
                             >
                             <span class="truncate">{{ team.name }}</span>
-                          </a>
+                          </Link>
                         </li>
                       </ul>
-                    </li>
+                    </li> -->
                     <li class="mt-auto">
-                      <a
+                      <Link
                         href="#"
                         class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-sky-200 hover:bg-sky-700 hover:text-white"
                       >
@@ -123,7 +124,7 @@
                           aria-hidden="true"
                         />
                         Settings
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </nav>
@@ -136,9 +137,8 @@
 
     <!-- Static sidebar for desktop -->
     <div
-      class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col"
+      class="hidden xl:fixed xl:inset-y-0 xl:z-50 xl:flex xl:w-72 xl:flex-col"
     >
-      <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div
         class="flex grow flex-col gap-y-5 overflow-y-auto bg-sky-600 px-6 pb-4"
       >
@@ -152,14 +152,14 @@
         <nav class="flex flex-1 flex-col">
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
             <li>
-              <ul role="list" class="-mx-2 space-y-1">
-                <li v-for="item in navigation" :key="item.name">
-                  <a
+              <ul role="list" class="-mx-2">
+                <li class="p-3" v-for="item in navigation" :key="item.name">
+                  <Link
                     :href="item.href"
                     :class="[
                       item.current
                         ? 'bg-sky-700 text-white'
-                        : 'text-sky-200 hover:bg-sky-700 hover:text-white',
+                        : 'border text-sky-200 hover:bg-sky-700 hover:text-white',
                       'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
                     ]"
                   >
@@ -174,17 +174,17 @@
                       aria-hidden="true"
                     />
                     {{ item.name }}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </li>
-            <li>
+            <!-- <li>
               <div class="text-xs font-semibold leading-6 text-sky-200">
                 Your teams
               </div>
               <ul role="list" class="-mx-2 mt-2 space-y-1">
                 <li v-for="team in teams" :key="team.name">
-                  <a
+                  <Link
                     :href="team.href"
                     :class="[
                       team.current
@@ -198,12 +198,12 @@
                       >{{ team.initial }}</span
                     >
                     <span class="truncate">{{ team.name }}</span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
-            </li>
+            </li> -->
             <li class="mt-auto">
-              <a
+              <Link
                 href="#"
                 class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-sky-200 hover:bg-sky-700 hover:text-white"
               >
@@ -212,20 +212,20 @@
                   aria-hidden="true"
                 />
                 Settings
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
       </div>
     </div>
 
-    <div class="lg:pl-72">
+    <div class="xl:pl-72">
       <div
-        class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8"
+        class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 xl:px-8"
       >
         <button
           type="button"
-          class="-m-2.5 p-2.5 text-gray-700 lg:hidden"
+          class="-m-2.5 p-2.5 text-gray-700 xl:hidden"
           @click="sidebarOpen = true"
         >
           <span class="sr-only">Open sidebar</span>
@@ -233,12 +233,11 @@
         </button>
 
         <!-- Separator -->
-        <div class="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true" />
+        <div class="h-6 w-px bg-gray-900/10 xl:hidden" aria-hidden="true" />
 
         <div
-          class="flex flex-1 justify-between items-center gap-x-4 lg:gap-x-6"
+          class="flex flex-1 justify-between items-center gap-x-4 xl:gap-x-6"
         >
-          <!-- Profile dropdown -->
           <div>
             <h1 class="text-lg flex font-semibold text-gray-900">
               Bienvenue, {{ auth?.user?.first_name || "Invité" }}
@@ -252,7 +251,7 @@
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                 alt=""
               />
-              <span class="hidden lg:flex lg:items-center">
+              <span class="hidden xl:flex xl:items-center">
                 <span
                   class="ml-4 text-sm font-semibold leading-6 text-gray-900"
                   aria-hidden="true"
@@ -293,27 +292,18 @@
                     {{ item.name }}
                   </Link>
                 </MenuItem>
-
-                <!-- Option de déconnexion toujours disponible en bas -->
-                <!-- <MenuItem v-slot="{ active }">
-                  <Link
-                    href="logout"
-                    :class="[
-                      active ? 'bg-gray-50' : '',
-                      'block w-full text-left px-3 py-1 text-sm leading-6 text-gray-900',
-                    ]"
-                  >
-                    {{ item.name }}
-                  </Link>
-                </MenuItem> -->
               </MenuItems>
             </transition>
           </Menu>
         </div>
       </div>
-
       <!-- Main and aside content -->
-      <Content />
+      <div
+        class="flex-grow bg-slate-100"
+        :style="`min-height: calc(100vh - 4rem);`"
+      >
+        <Content />
+      </div>
     </div>
   </div>
 </template>
@@ -346,6 +336,8 @@ import {
   DocumentDuplicateIcon,
   FolderIcon,
   FolderPlusIcon,
+  FolderOpenIcon,
+  PencilSquareIcon,
   HomeIcon,
   UsersIcon,
   XMarkIcon,
@@ -357,9 +349,6 @@ const props = defineProps({
   auth: Object,
 });
 
-console.log(props.auth);
-
-// Récupérer l'ID de l'utilisateur connecté
 const idVisiteur = props.auth.user.id;
 const mois = moment().format("YYYY-MM");
 
@@ -368,28 +357,36 @@ const navigation = [
     name: "Dashboard",
     href: route("dashboard"),
     icon: HomeIcon,
-    current: route().current("dashboard"), // Vérifier si la route actuelle est "dashboard"
+    current: route().current("dashboard"),
   },
   {
     name: "Nouveau Frais",
-    href: route("fiche-frais.show", { mois, idVisiteur }), // Route avec mois en cours et utilisateur connecté
-    icon: FolderPlusIcon,
-    current: route().current("fiche-frais.show"), // Vérifier si la route actuelle est "fiche-frais.show"
+    href: route("frais.create", { mois, idVisiteur }),
+    icon: PencilSquareIcon,
+    current: route().current("frais.create"),
   },
-  { name: "Mes Frais", href: "#", icon: UsersIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: DocumentDuplicateIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
+  {
+    name: "Mes Frais",
+    href: route("fiche-frais.index", { idVisiteur }),
+    icon: FolderOpenIcon,
+    current:
+      route().current("fiche-frais.index") ||
+      route().current("fiche-frais.show"), // Vérifier les deux séparément
+  },
+  // { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
+  // { name: "Documents", href: "#", icon: DocumentDuplicateIcon, current: false },
+  // { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
 ];
+
 const teams = [
-  { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
-  { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
-  { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
+  // { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
+  // { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
+  // { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
 ];
+
 const userNavigation = [
   { name: "Your profile", href: "#", method: "get", as: "button" },
-  // { name: "Settings", href: "#", method: "get" },
-  { name: "Sign out", href: "logout", method: "post", as: "button" }, // On utilise un bouton pour l'action
+  { name: "Sign out", href: route("logout"), method: "post", as: "button" },
 ];
 
 const sidebarOpen = ref(false);

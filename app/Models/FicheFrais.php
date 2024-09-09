@@ -26,4 +26,9 @@ class FicheFrais extends Model
     {
         return $this->hasMany(FraisHorsForfait::class, 'fiche_frais_id');
     }
+
+    public function fraisForfait()
+    {
+        return $this->hasMany(FraisForfait::class, 'fiche_frais_id');
+    }
 }

@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-row-reverse bg-slate-100 h-screen">
-    <main class="flex-1 justify-center overflow-visible">
+  <div class="flex flex-row-reverse bg-slate-100">
+    <main class="flex-1 justify-center h-full overflow-visible">
       <div class="px-4 w-full sm:px-6 lg:px-8 mx-auto">
-        <div class="rounded-lg bg-white shadow px-4 py-5 mb-7 sm:px-6">
+        <div class="rounded-lg bg-white shadow px-4 py-5 sm:px-6">
           <div class="flex justify-between items-center">
             <div class="flex flex-row">
               <h3 class="text-base font-semibold leading-6 text-gray-900">
@@ -14,30 +14,6 @@
               <h3 class="text-base font-semibold leading-6 text-gray-900">
                 {{ moisFicheFrais }}
               </h3>
-            </div>
-            <div v-if="ficheFrais.cloture">
-              <span
-                class="inline-flex items-center rounded-md bg-gray-100 px-3 py-1 text-sm font-semibold text-gray-500"
-              >
-                Clôturé
-              </span>
-            </div>
-            <div v-else class="flex-shrink-0">
-              <Link
-                :href="
-                  route('frais.create', {
-                    mois: ficheFrais.mois,
-                    idVisiteur: idVisiteur,
-                  })
-                "
-                class="relative gap-x-1.5 inline-flex items-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white"
-              >
-                <PlusCircleIcon
-                  class="h-4 w-4 md:h-5 md:w-5"
-                  aria-hidden="true"
-                />
-                <div class="hidden md:block">Ajouter un frais</div>
-              </Link>
             </div>
           </div>
 
@@ -95,38 +71,6 @@
                       <p class="whitespace-nowrap">{{ fraisItem.type }}</p>
                     </div>
                   </div>
-
-                  <div
-                    v-if="!ficheFrais.cloture"
-                    class="flex flex-col gap-y-1.5 md:gap-y-0 md:gap-x-1.5 md:flex-row"
-                  >
-                    <Link
-                      :href="
-                        fraisItem.type === 'hors forfait'
-                          ? route('frais-hors-forfait.edit', {
-                              mois: ficheFrais.mois,
-                              idVisiteur: idVisiteur,
-                              id: fraisItem.id,
-                            })
-                          : route('frais.edit', {
-                              mois: ficheFrais.mois,
-                              idVisiteur: idVisiteur,
-                              id: fraisItem.id,
-                            })
-                      "
-                      class="inline-flex items-center gap-x-1.5 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-500"
-                    >
-                      <PencilIcon class="-ml-0.5 h-4 w-4" aria-hidden="true" />
-                      <div class="hidden md:block">Modifier</div>
-                    </Link>
-                    <button
-                      @click="deleteFrais(fraisItem.id, fraisItem.type)"
-                      class="inline-flex items-center gap-x-1.5 rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500"
-                    >
-                      <TrashIcon class="-ml-0.5 h-4 w-4" aria-hidden="true" />
-                      <div class="hidden md:block">Supprimer</div>
-                    </button>
-                  </div>
                 </div>
               </li>
             </ul>
@@ -139,7 +83,6 @@
 
 <script setup>
 import { usePage, Link } from "@inertiajs/vue3";
-import { router } from "@inertiajs/vue3";
 import moment from "moment";
 import "moment/dist/locale/fr"; // Import French locale
 
@@ -150,8 +93,6 @@ const page = usePage();
 const fraisHorsForfait = page.props.fraisHorsForfait;
 const fraisForfait = page.props.fraisForfait;
 const ficheFrais = page.props.ficheFrais;
-
-const idVisiteur = page.props.auth.user.id;
 
 // Configurer moment pour utiliser la locale française
 moment.locale("fr");
@@ -199,59 +140,10 @@ const computedFraisForfait = fraisForfait.map((f) => ({
 // Fusionner les deux types de frais
 const combinedFrais = [...computedFraisHorsForfait, ...computedFraisForfait];
 
+// console.log(combinedFrais); // Vérifier la fusion dans la console
+
 // Trier les frais par la date (du plus récent au moins récent)
 const recentFrais = combinedFrais.sort((a, b) =>
   moment(b.date, "YYYY-MM-DD").diff(moment(a.date, "YYYY-MM-DD"))
 );
-
-const deleteFrais = (id, type) => {
-  if (confirm("Voulez-vous vraiment supprimer ce frais ?")) {
-    let routeName;
-
-    if (type === "hors forfait") {
-      // Si c'est un frais hors forfait
-      routeName = "frais-hors-forfait.destroy";
-    } else {
-      // Si c'est un frais forfaitaire
-      routeName = "frais.destroy";
-    }
-
-    router.delete(
-      route(routeName, {
-        idVisiteur: idVisiteur,
-        mois: ficheFrais.mois,
-        id: id, // ID du frais à supprimer
-      }),
-      {
-        onSuccess: (page) => {
-          router.visit(window.location.href, {
-            preserveScroll: true,
-            data: {
-              notification: {
-                titre: "Frais supprimé avec succès !",
-                message: "Le frais a été supprimé de votre note de frais.",
-                etat: "success",
-              },
-            },
-            replace: true,
-          });
-        },
-        onError: (errors) => {
-          console.error("Erreur lors de la suppression :", errors);
-          router.visit(window.location.href, {
-            preserveScroll: true,
-            data: {
-              notification: {
-                titre: "Erreur!",
-                message: errors,
-                etat: "fail",
-              },
-            },
-            replace: true,
-          });
-        },
-      }
-    );
-  }
-};
 </script>

@@ -14,6 +14,12 @@ class FraisHorsForfait extends Model
         'libelle',
         'montant',
         'etat',
+        'justificatifs',
+    ];
+
+    // Cette propriété permet d'indiquer que la colonne "justificatifs" doit être traitée comme un tableau JSON
+    protected $casts = [
+        'justificatifs' => 'array',
     ];
 
     public function ficheFrais()
