@@ -212,7 +212,7 @@ const submit = () => {
     <div class="relative hidden w-0 flex-1 lg:block">
       <img
         class="absolute inset-0 h-full w-full object-cover"
-        src="http://127.0.0.1:8000/storage/login_02.jpg"
+        src="/images/login_02.jpg"
         alt=""
       />
     </div>
