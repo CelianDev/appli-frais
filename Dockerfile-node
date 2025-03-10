@@ -1,0 +1,16 @@
+# Dockerfile-node
+FROM node:23
+
+WORKDIR /var/www
+
+# Installation des dépendances node (ex. package.json + package-lock.json)
+# On fait d'abord COPY des package*.json pour profiter du cache Docker
+COPY package*.json ./
+
+RUN npm install
+
+# Copier (ou monter) tout le code - si on veut builder
+COPY . .
+
+# Commande par défaut
+CMD ["npm", "run", "build"]
