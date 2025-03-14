@@ -112,14 +112,14 @@ const submit = () => {
       <div class="mx-auto w-full max-w-sm lg:w-96">
         <div>
           <img
-            class="h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
+            class="h-20 w-auto"
+            src="images/logo-gsb.png"
+            alt="Votre entreprise"
           />
           <h2
             class="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900"
           >
-            Sign in to your account
+            Connectez-vous à votre compte
           </h2>
         </div>
 
@@ -134,7 +134,7 @@ const submit = () => {
                 <label
                   for="email"
                   class="block text-sm font-medium leading-6 text-gray-900"
-                  >Email address</label
+                  >Adresse e-mail</label
                 >
                 <div class="mt-2">
                   <input
@@ -154,7 +154,7 @@ const submit = () => {
                 <label
                   for="password"
                   class="block text-sm font-medium leading-6 text-gray-900"
-                  >Password</label
+                  >Mot de passe</label
                 >
                 <div class="mt-2">
                   <input
@@ -181,7 +181,7 @@ const submit = () => {
                   <label
                     for="remember"
                     class="ml-3 block text-sm leading-6 text-gray-700"
-                    >Remember me</label
+                    >Se souvenir de moi</label
                   >
                 </div>
 
@@ -189,7 +189,7 @@ const submit = () => {
                   <a
                     href="#"
                     class="font-semibold text-sky-600 hover:text-sky-500"
-                    >Forgot password?</a
+                    >Mot de passe oublié ?</a
                   >
                 </div>
               </div>
@@ -201,7 +201,7 @@ const submit = () => {
                   type="submit"
                   class="flex w-full justify-center rounded-md bg-sky-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
                 >
-                  Sign in
+                  Se connecter
                 </button>
               </div>
             </form>
