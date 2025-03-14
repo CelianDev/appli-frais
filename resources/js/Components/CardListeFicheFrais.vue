@@ -90,8 +90,8 @@ moment.locale("fr");
 
 // Couleurs associées aux états des frais
 const statusColors = {
-  0: "text-sky-400 bg-sky-400/10", // Non clôturé
-  1: "text-gray-400 bg-gray-400/10", // Clôturé
+  false: "text-sky-400 bg-sky-400/10", // Non clôturé
+  true: "text-gray-400 bg-gray-400/10", // Clôturé
 };
 
 // Obtenir le mois et l'année actuels
@@ -149,6 +149,6 @@ const filteredFicheFrais = listeFicheFrais
     return f;
   })
   .filter((f) => f.montantTotal > 0) // Ne conserver que les fiches avec un montant non nul
-  .reverse() // Inverser l'ordre des fiches après les transformations
+  .sort((a, b) => moment(b.mois).diff(moment(a.mois))) // Inverser l'ordre des fiches après les transformations
   .slice(0, 7); // Limiter la liste à 7 fiches de frais
 </script>
