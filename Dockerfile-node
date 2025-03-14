@@ -7,7 +7,11 @@ WORKDIR /var/www
 # On fait d'abord COPY des package*.json pour profiter du cache Docker
 COPY package*.json ./
 
+# Installer les dépendances
 RUN npm install
+
+# Installer vue-tsc globalement si nécessaire
+RUN npm install -g vue-tsc
 
 # Copier (ou monter) tout le code - si on veut builder
 COPY . .
