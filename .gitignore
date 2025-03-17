@@ -24,3 +24,6 @@ Dockerfile-node
 ngninx.conf
 package-lock.json
 package.json
+composer.lock
+
+package.json

@@ -113,7 +113,7 @@ const submit = () => {
         <div>
           <img
             class="h-20 w-auto"
-            src="images/logo-gsb.png"
+            src="/images/logo-gsb.png"
             alt="Votre entreprise"
           />
           <h2
