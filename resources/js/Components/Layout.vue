@@ -53,7 +53,7 @@
                 <div class="flex h-16 shrink-0 items-center">
                   <img
                     class="h-12 w-auto"
-                    src="images/logo-gsb.png"
+                    src="/images/logo-gsb.png"
                     alt="Your Company"
                   />
                 </div>
@@ -145,7 +145,7 @@
         <div class="flex h-16 shrink-0 items-center">
           <img
             class="h-12 w-auto"
-            src="images/logo-gsb.png"
+            src="/images/logo-gsb.png"
             alt="Your Company"
           />
         </div>
