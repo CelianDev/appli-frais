@@ -22,7 +22,7 @@ class FicheFraisSeeder extends Seeder
             $date = Carbon::now()->startOfMonth()->subMonths(12 - $i);
             $fichesFrais[] = [
                 'mois' => $date->format('Y-m'),
-                'idVisiteur' => 1,
+                'idVisiteur' => 3,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];

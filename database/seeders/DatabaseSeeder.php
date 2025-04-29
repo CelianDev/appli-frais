@@ -29,6 +29,13 @@ class DatabaseSeeder extends Seeder
             'password' => 'password',
         ]);
 
+        User::factory()->create([
+            'first_name' => 'Jury',
+            'name' => '2025',
+            'email' => 'jury.2025@gsb.fr',
+            'password' => 'JURY.2025',
+        ]);
+
         $this->call(FicheFraisSeeder::class);
         $this->call(FraisHorsForfaitSeeder::class);
         $this->call(TypeFraisForfaitSeeder::class);
