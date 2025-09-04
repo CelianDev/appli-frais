@@ -1,66 +1,200 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 💼 AppliFrais - Application de Gestion des Notes de Frais
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> 🎓 **Projet étudiant BTS SIO SLAM** - Réalisé en alternance  
+> 📅 **Année** : 2023-2024  
+> 🎯 **Objectif** : Développement d'une application web moderne pour la gestion des notes de frais
 
-## About Laravel
+## 📋 À Propos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**AppliFrais** est une application web complète développée dans le cadre de ma formation BTS SIO spécialité SLAM (Solutions Logicielles et Applications Métiers) en alternance. Ce projet illustre ma capacité à concevoir et développer une solution métier moderne en utilisant les technologies web actuelles.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🎯 Fonctionnalités Principales
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **📝 Gestion des notes de frais** : Création, édition et suivi des frais professionnels
+- **💰 Frais forfait et hors forfait** : Support complet des différents types de frais
+- **📊 Tableau de bord interactif** : Visualisation des données avec des graphiques dynamiques
+- **🔐 Authentification sécurisée** : Système de connexion et gestion des utilisateurs
+- **📱 Interface responsive** : Design adaptatif pour tous les appareils
+- **⚡ Temps réel** : Mise à jour dynamique sans rechargement de page
 
-## Learning Laravel
+## 🛠️ Stack Technique
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Backend
+- **🐘 PHP 8.4** - Langage serveur moderne
+- **🔥 Laravel 11** - Framework PHP élégant et puissant
+- **🗄️ PostgreSQL** - Base de données relationnelle robuste
+- **🔒 Laravel Sanctum** - Authentification API sécurisée
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Frontend
+- **🟢 Vue.js 3** - Framework JavaScript progressif
+- **⚡ Support TypeScript** - Configuration et build avec TypeScript
+- **🌊 Inertia.js** - SPA moderne sans API
+- **🎨 Tailwind CSS** - Framework CSS utilitaire
+- **📊 Chart.js** - Bibliothèque de graphiques interactifs
+- **🎯 PrimeVue** - Composants UI professionnels
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Outils & DevOps
+- **⚡ Vite** - Build tool ultra-rapide
+- **🧪 Pest** - Framework de tests PHP moderne
+- **📦 Composer** - Gestionnaire de dépendances PHP
+- **📦 npm** - Gestionnaire de paquets JavaScript
 
-## Laravel Sponsors
+## 🚀 Installation & Démarrage
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Prérequis
+- PHP 8.4+
+- Node.js 23.0+
+- PostgreSQL 13+
+- Composer
 
-### Premium Partners
+### Installation
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+# Cloner le repository
+git clone https://github.com/CelianDev/appli-frais.git
+cd appli-frais
 
-## Contributing
+# Installation des dépendances PHP
+composer install
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Installation des dépendances JavaScript
+npm install
 
-## Code of Conduct
+# Configuration de l'environnement
+cp .env.example .env
+php artisan key:generate
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Configuration de la base de données dans .env
+# DB_CONNECTION=pgsql
+# DB_HOST=127.0.0.1
+# DB_PORT=5432
+# DB_DATABASE=appli_frais
+# DB_USERNAME=votre_user
+# DB_PASSWORD=votre_password
 
-## Security Vulnerabilities
+# Migration et seeders
+php artisan migrate --seed
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Lancement
 
-## License
+```bash
+# Serveur de développement PHP
+php artisan serve
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Dans un autre terminal - Build des assets
+npm run dev
+```
+
+L'application sera accessible sur `http://localhost:8000`
+
+## 📸 Aperçus
+
+### 🔑 Comptes de démonstration
+```
+👤 Utilisateur standard
+Email: zenscripter@example.com
+Mot de passe: password
+
+👨‍💼 Compte jury
+Email: jury.2025@gsb.fr
+Mot de passe: JURY.2025
+```
+
+## 🏗️ Architecture
+
+```
+appli-frais/
+├── app/                    # Logique métier Laravel
+│   ├── Http/Controllers/   # Contrôleurs
+│   └── Models/            # Modèles Eloquent
+├── database/              # Migrations et seeders
+├── resources/
+│   ├── js/
+│   │   ├── Components/    # Composants Vue réutilisables
+│   │   └── Pages/        # Pages de l'application
+│   └── views/            # Templates Blade
+├── routes/               # Définition des routes
+└── tests/               # Tests automatisés
+```
+
+## 🎨 Fonctionnalités Détaillées
+
+### Dashboard Interactif
+- **📊 Graphiques dynamiques** avec Chart.js
+- **📈 Statistiques en temps réel** des dépenses
+- **🎯 Vue d'ensemble** des frais par période
+
+### Gestion des Frais
+- **➕ Ajout simple** de nouveaux frais
+- **✏️ Modification** des frais existants
+- **🗑️ Suppression** avec confirmation
+- **📋 Historique complet** des modifications
+
+### Interface Utilisateur
+- **🎨 Design moderne** avec Tailwind CSS
+- **📱 Responsive design** pour mobile et desktop
+- **⚡ Navigation fluide** sans rechargements
+- **🔔 Notifications** en temps réel
+
+## 🧪 Tests
+
+```bash
+# Lancer les tests
+php artisan test
+
+# Tests avec couverture
+php artisan test --coverage
+```
+
+## 🎓 Compétences Démontrées
+
+### Développement Backend
+- ✅ Architecture MVC avec Laravel
+- ✅ Gestion des bases de données avec Eloquent ORM
+- ✅ API RESTful et authentification
+- ✅ Validation des données et sécurité
+
+### Développement Frontend
+- ✅ Application SPA avec Vue.js 3
+- ✅ Support TypeScript pour le build et la configuration
+- ✅ Composants réutilisables et modulaires
+- ✅ Intégration d'APIs et gestion d'état
+
+### Bonnes Pratiques
+- ✅ Code propre et documenté
+- ✅ Tests automatisés
+- ✅ Sécurité et protection des données
+- ✅ Git workflow et versioning
+
+## 📚 Contexte Pédagogique
+
+Ce projet s'inscrit dans le cadre de ma formation **BTS SIO SLAM** en alternance et démontre :
+
+- 🎯 **Analyse des besoins** et conception d'une solution métier
+- 🛠️ **Développement full-stack** avec des technologies modernes
+- 🔒 **Sécurisation** d'une application web
+- 📊 **Intégration** de fonctionnalités de reporting
+- 🚀 **Déploiement** et mise en production
+
+## 📞 Contact
+
+- 📧 **Email** : [votre-email]
+- 💼 **LinkedIn** : [votre-linkedin]
+- 🐙 **GitHub** : [votre-github]
+
+---
+
+### 🤝 À l'attention des recruteurs
+
+Ce projet illustre ma capacité à :
+- Développer une application web complète et moderne
+- Maîtriser un stack technique varié (PHP/Laravel + Vue.js/TypeScript)
+- Suivre les bonnes pratiques de développement
+- Travailler de manière autonome et méthodique
+
+N'hésitez pas à explorer le code et à me contacter pour toute question ! 😊
+
+---
+
+*⭐ Si ce projet vous plaît, n'hésitez pas à le starrer !*
