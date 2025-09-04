@@ -92,10 +92,6 @@ L'application sera accessible sur `http://localhost:8000`
 
 ### 🔑 Comptes de démonstration
 ```
-👤 Utilisateur standard
-Email: zenscripter@example.com
-Mot de passe: password
-
 👨‍💼 Compte jury
 Email: jury.2025@gsb.fr
 Mot de passe: JURY.2025
