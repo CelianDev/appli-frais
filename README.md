@@ -179,9 +179,7 @@ Ce projet s'inscrit dans le cadre de ma formation **BTS SIO SLAM** en alternance
 
 ## 📞 Contact
 
-- 📧 **Email** : [votre-email]
-- 💼 **LinkedIn** : [votre-linkedin]
-- 🐙 **GitHub** : [votre-github]
+- 📧 **Email** : contact@celian-dev.pro
 
 ---
 
